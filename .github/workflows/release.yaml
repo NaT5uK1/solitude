@@ -17,7 +17,7 @@ jobs:
       — name: setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 17
+          node-version: '17'
       — name: install rust stable
         uses: actions-rs/toolchain@v1
         with:
@@ -27,12 +27,12 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y webkit2gtk-4.0
-      — run: yarn
+      — run: pnpm
       — name: build nota for tauri app
-        run: yarn build
+        run: pnpm build
       — run: cargo install tauri-bundler --force
       — name: build tauri app
-        run: yarn tauri:build
+        run: pnpm tauri:build
 
   create-release:
     needs: check-build
@@ -99,12 +99,12 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y webkit2gtk-4.0
-      — run: yarn
+      — run: pnpm
       — name: build nota for tauri app
-        run: yarn build
+        run: pnpm build
       — run: cargo install tauri-bundler --force
       — name: build tauri app
-        run: yarn tauri:build
+        run: pnpm tauri:build
       — name: compress (macos only)
         if: matrix.platform == 'macos-latest'
         working-directory: ${{ format('./src-tauri/target/release/{0}', matrix.buildFolder ) }}
@@ -120,7 +120,7 @@ jobs:
           asset_name: ${{ format('nota{0}{1}', matrix.ext, matrix.compressed ) }}
           asset_content_type: application/zip
       — name: build tauri app in debug mode
-        run: yarn tauri:build --debug
+        run: pnpm tauri:build --debug
       — name: compress (macos only)
         if: matrix.platform == 'macos-latest'
         working-directory: ${{ format('./src-tauri/target/debug/{0}', matrix.buildFolder ) }}
