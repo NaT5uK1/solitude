@@ -50,6 +50,10 @@ pnpm tauri build
 
 # Run as a webapp
 
+## Online
+
+There's a [solitude server](https://solitude-khaki.vercel.app/)
+
 ## Development
 
 ```shell
