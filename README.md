@@ -1,6 +1,6 @@
 # Description
 
-Solitude is an arty mil calculator for [Hell Let Loose](https://store.steampowered.com/app/686810/Hell_Let_Loose/) built by tauri
+Solitude is an artillery mil calculator for [Hell Let Loose](https://store.steampowered.com/app/686810/Hell_Let_Loose/) built by tauri
 
 ## Screenshot
 
@@ -52,7 +52,7 @@ pnpm tauri build
 
 ## Online
 
-There's a [solitude server](https://solitude-khaki.vercel.app/)
+[solitude](https://solitude-khaki.vercel.app/) deployed by vercel
 
 ## Development
 

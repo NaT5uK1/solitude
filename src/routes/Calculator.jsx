@@ -44,15 +44,20 @@ const Caculator = () => {
 
   const validate = (value) => {
     const reg = /^\d+$/
-    if (!reg.test(value)) {
-      setErrorMessage("Please input a number")
-      return false
-    } else if (value < 100 || value > 1600) {
-      setErrorMessage("The number must be in [100,1600]")
-      return false
+    if (value) {
+      if (!reg.test(value)) {
+        setErrorMessage("Please input a number")
+        return false
+      } else if (value < 100 || value > 1600) {
+        setErrorMessage("The number must be in [100,1600]")
+        return false
+      } else {
+        setErrorMessage("")
+        return true
+      }
     } else {
       setErrorMessage("")
-      return true
+      return false
     }
   }
 

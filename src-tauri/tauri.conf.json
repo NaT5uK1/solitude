@@ -15,11 +15,7 @@
       "targets": "all",
       "identifier": "com.tauri.dev",
       "icon": [
-        "icons/32x32.png",
-        "icons/128x128.png",
-        "icons/128x128@2x.png",
-        "icons/icon.icns",
-        "icons/icon.ico"
+        "../assets/logo.png"
       ],
       "resources": [],
       "externalBin": [],
@@ -54,7 +50,7 @@
     },
     "windows": [
       {
-        "title": "Solitude - Arty Mil Calculator For HLL",
+        "title": "Solitude - Artillery Mil Calculator For HLL",
         "width": 800,
         "height": 600,
         "resizable": true,
