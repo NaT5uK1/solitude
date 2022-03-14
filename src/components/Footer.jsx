@@ -2,7 +2,11 @@ import { open } from "@tauri-apps/api/shell"
 
 const Footer = () => {
   const openBrowser = () => {
-    open("https://github.com/NaT5uK1/solitude")
+    if(window.__TAURI__){
+      open("https://github.com/NaT5uK1/solitude")
+    }else{
+      window.location = "https://github.com/NaT5uK1/solitude"
+    }
   }
   return (
     <div className="fixed bottom-0 bg-indigo-50 w-screen">
