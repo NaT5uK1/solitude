@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useParams } from "react-router-dom"
 import debounce from "../tools/debounce.js"
 const rules = [
@@ -22,11 +22,18 @@ const Caculator = () => {
   const [mil, setMil] = useState("MIL")
   const [errorMessage, setErrorMessage] = useState("")
   const { team } = useParams()
+  const input = useRef(null)
+  useEffect(() => {
+    calculate()
+  }, [team])
 
-  const inputHandler = (e) => {
-    let distance = e.target.value
+  const calculate = () => {
+    let distance = input.current.value
     let isValidity = validate(distance)
-    if (!isValidity) return
+    if (!isValidity) {
+      setMil("MIL")
+      return
+    }
     let { mil_list } = team === "1" ? rules[1] : rules[0]
     let index = Math.floor(distance / 100 - 1)
     let mil
@@ -38,7 +45,6 @@ const Caculator = () => {
           ((distance % 100) * (mil_list[index] - mil_list[index + 1])) / 100
       )
     }
-
     setMil(mil)
   }
 
@@ -68,7 +74,8 @@ const Caculator = () => {
           className="outline-none h-10 w-70 tracking-widest text-xl text-indigo-500 leading-loose text-center rounded-lg placeholder-indigo-300"
           type="text"
           placeholder="Target Distance"
-          onKeyUp={debounce(inputHandler)}
+          ref={input}
+          onKeyUp={debounce(calculate)}
         />
         {errorMessage && (
           <div className="flex mt-3 bg-red-200 border-t-10 border-red-500 rounded-lg text-center">
