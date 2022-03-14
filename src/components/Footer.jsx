@@ -5,7 +5,7 @@ const Footer = () => {
     if(window.__TAURI__){
       open("https://github.com/NaT5uK1/solitude")
     }else{
-      window.location = "https://github.com/NaT5uK1/solitude"
+      window.open("https://github.com/NaT5uK1/solitude",'_blank')
     }
   }
   return (
