@@ -75,7 +75,7 @@ const Caculator = () => {
           type="text"
           placeholder="Target Distance"
           ref={input}
-          onKeyUp={debounce(calculate)}
+          onKeyUp={debounce(calculate,100)}
         />
         {errorMessage && (
           <div className="flex mt-3 bg-red-200 border-t-10 border-red-500 rounded-lg text-center">
