@@ -1,40 +1,34 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
-import debounce from "../tools/debounce.js"
-const rules = [
-  {
-    name: "GER/US",
-    mil_list: [
-      978, 954, 930, 907, 883, 859, 836, 812, 788, 764, 741, 717, 693, 670, 646,
-      622,
-    ],
-  },
-  {
-    name: "CCCP",
-    mil_list: [
-      1120, 1099, 1077, 1056, 1035, 1013, 992, 971, 949, 928, 907, 885, 864,
-      843, 821, 800,
-    ],
-  },
-]
-
+import { useDebounce } from "react-use"
+import { rules } from "../data/rules.json"
+import ErrorPage from "./ErrorPage"
 const Caculator = () => {
+  const [distance, setDistance] = useState("")
   const [mil, setMil] = useState("MIL")
   const [errorMessage, setErrorMessage] = useState("")
   const { team } = useParams()
-  const input = useRef(null)
+  const reg = /^\d+$/
+
   useEffect(() => {
     calculate()
   }, [team])
 
+  useDebounce(
+    () => {
+      calculate()
+    },
+    300,
+    [distance]
+  )
+
   const calculate = () => {
-    let distance = input.current.value
     let isValidity = validate(distance)
     if (!isValidity) {
       setMil("MIL")
       return
     }
-    let { mil_list } = team === "1" ? rules[1] : rules[0]
+    let { mil_list } = rules[team]
     let index = Math.floor(distance / 100 - 1)
     let mil
     if (distance % 100 === 0) {
@@ -49,7 +43,6 @@ const Caculator = () => {
   }
 
   const validate = (value) => {
-    const reg = /^\d+$/
     if (value) {
       if (!reg.test(value)) {
         setErrorMessage("Please input a number")
@@ -67,15 +60,16 @@ const Caculator = () => {
     }
   }
 
-  return (
+  return !reg.test(team) || team > rules.length ? (
+    <ErrorPage/>
+  ) : (
     <div className="flex flex-col justify-center items-center space-y-20">
       <div>
         <input
           className="outline-none h-10 w-70 tracking-widest text-xl text-indigo-500 leading-loose text-center rounded-lg placeholder-indigo-300"
           type="text"
           placeholder="Target Distance"
-          ref={input}
-          onKeyUp={debounce(calculate,100)}
+          onKeyUp={(e) => setDistance(e.target.value)}
         />
         {errorMessage && (
           <div className="flex mt-3 bg-red-200 border-t-10 border-red-500 rounded-lg text-center">

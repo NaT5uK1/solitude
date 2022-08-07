@@ -6,7 +6,9 @@ const CustomLink = ({ children, to, ...props }) => {
   let match = useMatch({ path: resolved.pathname, end: true })
   return (
     <Link
-      className={`no-underline rounded-lg border p-3 bg-indigo-400 hover:bg-indigo-500 ${match && active}`}
+      className={`no-underline rounded-lg border p-3 bg-indigo-400 hover:bg-indigo-500 ${
+        match && active
+      }`}
       to={to}
       {...props}
     >
