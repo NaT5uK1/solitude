@@ -1,8 +1,9 @@
 name: 'My Workflow'
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - 'releases/**'
 
 jobs:
   create-release:
