@@ -4,8 +4,5 @@ import WindiCSS from "vite-plugin-windicss"
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), WindiCSS()],
-  server: {
-    port: 3000,
-  },
+  plugins: [react(), WindiCSS()]
 })

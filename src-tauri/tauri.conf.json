@@ -1,11 +1,12 @@
 {
+  "$schema": "../node_modules/@tauri-apps/cli/schema.json",
   "package": {
     "productName": "solitude",
     "version": "0.2.0"
   },
   "build": {
     "distDir": "../dist",
-    "devPath": "http://localhost:3000",
+    "devPath": "http://localhost:5173",
     "beforeDevCommand": "pnpm dev",
     "beforeBuildCommand": "pnpm build"
   },
