@@ -17,7 +17,7 @@
       "identifier": "solitude.nat5uk1",
       "icon": [
         "../assets/logo.png",
-        "icon.ico"
+        "./icons/icon.ico"
       ],
       "resources": [],
       "externalBin": [],
