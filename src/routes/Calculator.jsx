@@ -18,7 +18,7 @@ const Caculator = () => {
     () => {
       calculate()
     },
-    300,
+    100,
     [distance]
   )
 
